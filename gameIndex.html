@@ -1,0 +1,326 @@
+<!-- Make your first real project a “Game Hub” -->
+<!-- Core idea: A single web page that eventually 
+ becomes a small hub for all the little games you 
+ build while learning. -->
+
+ <!-- Starting point: You’re not building a commercial product
+  —you’re building a personal game portfolio, brick by brick.
+
+5. Add a simple 2D platformer using p5.js or Phaser.
+
+The goal isn’t a finished website. The real goal is to:
+Have a place to practice and display your work.
+Learn by building, breaking, and rebuilding.
+Look back and say, “I made all this from scratch.” -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="gameCSS.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <title>My Game Lab</title>
+</head>
+<body>
+    
+                    <!------------------------ homeScreenContainer wrap ------------------------>
+     <div id="homeScreenContainer">
+        <h1>Game Lab</h1><br>
+        <h5>Welcome to the Game Lab, created by: MC</h5>
+        <hr>
+        <div class="gameCardContainer">
+                <div class="gameCard" data-target="numberGuessingContainer">Number Guessing Game</div>
+                <div class="gameCard" data-target="passwordGeneratorContainer">Password Generator</div>
+                <div class="gameCard" data-target="randomNumberGeneratorContainer">Random Number Generator</div>
+                <div class="gameCard" data-target="counterContainer">Counter<br></div>
+                <div class="gameCard" data-target="anagramSolverContainer">Anagram Solver</div>
+                <div class="gameCard" data-target="toDoListContainer">To-Do List App</div>
+                <div class="gameCard" data-target="rockPaperScissorsContainer">Rock Paper Scissors Game</div>
+                <div class="gameCard" data-target="quizGameContainer">Quiz Game</div>
+                <div class="gameCard" data-target="memoryCardGameContainer">Memory Card Game</div>
+                <div class="gameCard" data-target="whackAMoleGameContainer">Whack-A-Mole</div>
+                <div class="gameCard" data-target="typingSpeedTestContainer">Typing Speed Test</div>
+                <div class="gameCard" data-target="reactionSpeedContainer">Reaction Time</div>
+                <div class="gameCard" data-target="clickTheMovingTargetContainer">Moving Target<br>(Coming Soon)</div>
+        </div>
+     </div>
+
+                    <!------------------------ DISPLAY AREA for numberGuessing ------------------------>
+    <div id="numberGuessingContainer" class="gameDisplayContainer" style="display: none">
+        <!-- adding a BACK button -->
+        <button class="backBtn">⬅️Back</button> 
+        <!-- A heading with game instructions -->
+        <h2>Number Guessing Game</h2>
+        <p id="numberGuessingInstructions" class="instructions">Guess a number between 1 and 100!</p>
+        <!-- A paragraph for feedback messages -->
+        <p id="numberGuessingFeedback"></p>
+        <!-- An input field for guesses -->
+        <input type="number" id="guessInput" placeholder="Enter your guess here">
+        <!-- A button to submit the guess -->
+        <button id="mySubmit" class="buttons">Submit</button>
+        <!-- Add a restart button-->
+        <button id="game1restartBtn" class="buttons" style="display: none">Play Again</button>
+    </div>
+    
+                    <!------------------------ DISPLAY AREA for passwordGenerator ------------------------>
+     <div id="passwordGeneratorContainer" class="gameDisplayContainer" style="display: none">
+        <!-- adding a BACK button -->
+        <button class="backBtn">⬅️Back</button> 
+        <!-- A heading with game instructions -->
+        <h2>Password Generator</h2>
+        <p id="passwordGeneratorInstructions" class="instructions">Click "Generate Password"</p>
+        <!-- A paragraph for feedback messages -->
+        <p id="passwordGeneratorFeedback" style="display: none"></p><br>
+        <!-- A button to submit the guess -->
+        <button id="generatePasswordBtn" class="buttons">Generate Password</button>
+        <button id="reGeneratePasswordBtn" class="buttons" style="display: none">Regenerate</button>
+        <!-- Add a reset button-->
+        <button id="passwordGeneratorResetBtn" class="buttons" style="display: none">Reset</button>
+     </div>
+
+                    <!------------------------ DISPLAY AREA for Random Number Generator ------------------------>
+    <div id="randomNumberGeneratorContainer" class="gameDisplayContainer" style="display: none">
+        <!-- adding a BACK button -->
+        <button class="backBtn">⬅️Back</button> 
+        <h2>Random Number Generator</h2>
+        <p id="randomNumberGeneratorInstructions" class="instructions">Click "Generate Number"</p>
+        <p id="randomNumberGeneratorFeedback"></p>
+        <button id="randomNumberGeneratorBtn" class="buttons">Generate Number</button>
+        <button id="randomNumberGeneratorResetBtn" class="buttons" style="display: none">Reset</button>
+    </div>
+
+                    <!------------------------ DISPLAY AREA for Counter ------------------------>
+     <div id="counterContainer" class="gameDisplayContainer" style="display: none">
+        <!-- adding a BACK button -->
+        <button class="backBtn">⬅️Back</button> 
+        <h2>Counter</h2>
+        <div id="counterResult">0</div><br>
+        <button id="counterDecreaseBtn" class="buttons">Decrease</button>
+        <button id="counterIncreaseBtn" class="buttons">Increase</button><br>
+        <button id="counterResetBtn" class="buttons">Reset</button>
+     </div>
+
+                    <!------------------------ DISPLAY AREA for Anagram Solver ------------------------>
+     <div id="anagramSolverContainer" class="gameDisplayContainer" style="display: none">
+        <!-- adding a BACK button -->
+        <button class="backBtn">⬅️Back</button> 
+        <h2>Anagram Solver</h2>
+        <p id="anagramSolverInstructions" class="instructions" style="display: none">What's the scrambled city name? <br> Type your guess and hit submit!</p>
+        <p id="anagramSolverWordScrambled"></p>
+        <button id="anagramSolverStartBtn" class="buttons">Start</button>
+        <p id="anagramSolverFeedback" style="display: none"></p><br>
+        <input id="anagramSolverInput" style="display: none">
+        <button id="anagramSolverSubmitBtn" class="buttons" style="display: none">Submit</button>
+        <button id="anagramSolverNextBtn" class="buttons" style="display: none">Next</button>
+        <button id="anagramSolverResetBtn" class="buttons" style="display: none">Reset</button>
+     </div>
+
+                    <!------------------------ DISPLAY AREA for To-do List ------------------------>
+     <div id="toDoListContainer" class="gameDisplayContainer" style="display: none">
+        <button class="backBtn">⬅️Back</button> 
+        <h2>To-do List</h2>
+
+        <input id="toDoUserInput" type="text" placeholder="Enter task here">
+        <button id="addTaskBtn" class="button">Add Task</button>
+        <ul id="toDoTaskList"></ul>
+     </div>
+
+                    <!------------------------ DISPLAY AREA for Rock, Paper, Scissors ------------------------>
+     <div id="rockPaperScissorsContainer" class="gameDisplayContainer" style="display: none">
+        <button class="backBtn">⬅️Back</button> 
+        <h2>Rock, Paper, Scissors</h2>
+
+        <p id="rpsInstructions" class="rpsText" style="display: inline-block;">Hit start when you're ready!</p><br>
+        <p id="rpsFeedback" class="rpsText" style="display: none">Choose: Rock, Paper or Scissors and hit GO when you're ready!</p>
+        <div class="center-wrapper">
+            <button id="rockPaperScissorsStart">START</button>
+        </div>
+        <button id="rockOption" style="display: none" class="userOptions" data-target="rock">✊</button>
+        <button id="paperOption" style="display: none" class="userOptions" data-target="paper">✋</button>
+        <button id="scissorsOption" style="display: none" class="userOptions" data-target="scissors">✌️</button><br>
+        <button id="rockPaperScissorsGoBtn" style="display: none">GO</button>
+        <button id="rpsResetBtn" style="display: none;">🔄</button>
+     </div>
+
+                    <!------------------------ DISPLAY AREA for Quiz Game ------------------------>
+      <div id="quizGameContainer" class="gameDisplayContainer" style="display: none">
+        <button class="backBtn">⬅️Back</button> 
+        <h2>Quiz Game</h2>
+
+        <p id="quizGameInstructions">Welcome to the Quiz Game! When you're ready, hit START. Good luck!</p>
+        <button id="quizGameStartBtn">START</button>
+
+        <p id="quizGameFeedback1" style="display: none"></p>
+        
+        <div id="quizGameCenterWrap" class="quizGameOptions-center" style="display: none">
+            <button id="optionA" class="quizGameOptions"></button>
+            <button id="optionB" class="quizGameOptions"></button>
+            <button id="optionC" class="quizGameOptions"></button>
+        </div>
+        
+        <p id="quizGameFeedback2" style="display: none"></p><br>
+        <button id="quizGameNextBtn" style="display: none">NEXT</button>
+      </div>
+
+                    <!------------------------ DISPLAY AREA for Memory Card Game ------------------------>
+       <div id="memoryCardGameContainer" class="gameDisplayContainer" style="display: none">
+            <button class="backBtn">⬅️Back</button>
+            <h2>Memory Card Game</h2>
+
+            <p id="memoryCardGameInstructions" class="instructions">When you're ready, hit START and the board will be shuffled!</p><br>
+            <p id="memoryCardGameFeedback"></p>
+            
+            <div id="cardContainer" style="display: none">
+                <div id="memoryCard1a" class="memoryCard"></div>
+                <div id="memoryCard1b" class="memoryCard"></div>
+                <div id="memoryCard2a" class="memoryCard"></div>
+                <div id="memoryCard2b" class="memoryCard"></div>
+                <div id="memoryCard3a" class="memoryCard"></div>
+                <div id="memoryCard3b" class="memoryCard"></div>
+                <div id="memoryCard4a" class="memoryCard"></div>
+                <div id="memoryCard4b" class="memoryCard"></div>
+                <div id="memoryCard5a" class="memoryCard"></div>
+                <div id="memoryCard5b" class="memoryCard"></div>
+                <div id="memoryCard6a" class="memoryCard"></div>
+                <div id="memoryCard6b" class="memoryCard"></div>
+                <div id="memoryCard7a" class="memoryCard"></div>
+                <div id="memoryCard7b" class="memoryCard"></div>
+                <div id="memoryCard8a" class="memoryCard"></div>
+                <div id="memoryCard8b" class="memoryCard"></div>
+                <div id="memoryCard9a" class="memoryCard"></div>
+                <div id="memoryCard9b" class="memoryCard"></div>
+                <div id="memoryCard10a" class="memoryCard"></div>
+                <div id="memoryCard10b" class="memoryCard"></div>
+                <div id="memoryCard11a" class="memoryCard"></div>
+                <div id="memoryCard11b" class="memoryCard"></div>
+                <div id="memoryCard12a" class="memoryCard"></div>
+                <div id="memoryCard12b" class="memoryCard"></div>
+                <div id="memoryCard13a" class="memoryCard"></div>
+                <div id="memoryCard13b" class="memoryCard"></div>
+                <div id="memoryCard14a" class="memoryCard"></div>
+                <div id="memoryCard14b" class="memoryCard"></div>
+                <div id="memoryCard15a" class="memoryCard"></div>
+                <div id="memoryCard15b" class="memoryCard"></div>
+                <div id="memoryCard16a" class="memoryCard"></div>
+                <div id="memoryCard16b" class="memoryCard"></div>
+                <div id="memoryCard17a" class="memoryCard"></div>
+                <div id="memoryCard17b" class="memoryCard"></div>
+                <div id="memoryCard18a" class="memoryCard"></div>
+                <div id="memoryCard18b" class="memoryCard"></div>
+                <div id="memoryCard19a" class="memoryCard"></div>
+                <div id="memoryCard19b" class="memoryCard"></div>
+                <div id="memoryCard20a" class="memoryCard"></div>
+                <div id="memoryCard20b" class="memoryCard"></div>
+                <div id="memoryCard21a" class="memoryCard"></div>
+                <div id="memoryCard21b" class="memoryCard"></div>
+                <div id="memoryCard22a" class="memoryCard"></div>
+                <div id="memoryCard22b" class="memoryCard"></div>
+                <div id="memoryCard23a" class="memoryCard"></div>
+                <div id="memoryCard23b" class="memoryCard"></div>
+                <div id="memoryCard24a" class="memoryCard"></div>
+                <div id="memoryCard24b" class="memoryCard"></div>
+                <div id="memoryCard25a" class="memoryCard"></div>
+                <div id="memoryCard25b" class="memoryCard"></div>
+                <div id="memoryCard26a" class="memoryCard"></div>
+                <div id="memoryCard26b" class="memoryCard"></div>
+                <div id="memoryCard27a" class="memoryCard"></div>
+                <div id="memoryCard27b" class="memoryCard"></div>
+                <div id="memoryCard28a" class="memoryCard"></div>
+                <div id="memoryCard28b" class="memoryCard"></div>
+                <div id="memoryCard29a" class="memoryCard"></div>
+                <div id="memoryCard29b" class="memoryCard"></div>
+                <div id="memoryCard30a" class="memoryCard"></div>
+                <div id="memoryCard30b" class="memoryCard"></div>
+                <div id="memoryCard31a" class="memoryCard"></div>
+                <div id="memoryCard31b" class="memoryCard"></div>
+                <div id="memoryCard32a" class="memoryCard"></div>
+                <div id="memoryCard32b" class="memoryCard"></div>
+
+            </div>
+            <br>
+           <button id="memoryCardStartBtn" class="memoryCardStartBtn">START</button>
+           <button id="memoryCardGameResetBtn" class="memoryCardResetBtn" style="display: none">SHUFFLE & RESET</button>
+
+       </div>
+
+                    <!------------------------ DISPLAY AREA for Whack-A-Mole ------------------------>
+       <div id="whackAMoleGameContainer" class="gameDisplayContainer" style="display: none">
+            <button class="backBtn">⬅️Back</button>
+            <h2>Whack-A-Mole</h2>
+
+            <p id="wamInstructions" class="instructions">When you're ready, hit READY!</p>
+            <p id="wamScoreHolder" class="instructions" style="display: none">Score: 0</p><br>
+            <button id="wamStopBtn" style="display: none">STOP</button>
+            <button id="wamStartBtn2" style="display: none">START</button>
+            
+            <div id="wamGridContainer" style="display: none">
+                <button id="wamStartBtn" style="display: none">START</button>
+                <div id="wamblock1" class="wamBlocks"></div>
+                <div id="wamblock2" class="wamBlocks"></div>
+                <div id="wamblock3" class="wamBlocks"></div>
+                <div id="wamblock4" class="wamBlocks"></div>
+                <div id="wamblock5" class="wamBlocks"></div>
+                <div id="wamblock6" class="wamBlocks"></div>
+                <div id="wamblock7" class="wamBlocks"></div>
+                <div id="wamblock8" class="wamBlocks"></div>
+                <div id="wamblock9" class="wamBlocks"></div>
+                <div id="wamblock10" class="wamBlocks"></div>
+                <div id="wamblock11" class="wamBlocks"></div>
+                <div id="wamblock12" class="wamBlocks"></div>
+                <div id="wamblock13" class="wamBlocks"></div>
+                <div id="wamblock14" class="wamBlocks"></div>
+                <div id="wamblock15" class="wamBlocks"></div>
+                <div id="wamblock16" class="wamBlocks"></div>
+            </div>
+
+            <button id="wamReadyBtn">READY</button>
+       </div>
+
+                    <!------------------------ DISPLAY AREA for Typing Speed Test ------------------------>
+        <div id="typingSpeedTestContainer" class="gameDisplayContainer" style="display: none">
+            <button class="backBtn">⬅️Back</button>
+            <h2>Typing Speed Test</h2>
+
+            <p id="tstSentenceDisplay"></p>
+            <input id="tstInput" type="text" placeholder="Enter text here..."><br>
+            <p id="tstResult" style="display: none"></p><br>
+            <button id="tstResetBtn">RESET</button>
+        </div>
+
+                    <!------------------------ DISPLAY AREA for Reaction Speed ------------------------>
+        <div id="reactionSpeedContainer" class="gameDisplayContainer" style="display: none;">
+            <button class="backBtn">⬅️Back</button>
+            <h2>Reaction Speed</h2>
+
+            <p id="reactionSpeedInstructions" class="instructions">Let's put your reaction time to the test!<br><br>
+            1. Click on orange to start<br>
+            2. Wait for blue to change to green<br>
+            3. Click as soon as possible<br><br>
+            When you're ready, hit "begin" to start the test. Good luck!</p>
+            <button id="reacionSpeedBeginBtn">BEGIN</button>
+            <div id="reactionSpeedClickBox" style="display: none">
+                <p id="reactionSpeedFeedback">Click to start.</p>
+            </div>
+        </div>
+
+                    <!------------------------ DISPLAY AREA for Moving Target ------------------------>
+        <div id="clickTheMovingTargetContainer" class="gameDisplayContainer", style="display: none">
+            <button class="backBtn">⬅️Back</button>
+            <h2>Moving Target</h2>
+
+            <p id="movingTargetInstruction" class="instructions">A moving target will appear on the screen,<br>
+                                                                 click the targets as soon as they appear.<br>
+                                                                 Hit "Start" when you're ready!</p>
+            <button id="movingTargetStartBtn">Start</button>
+            <p id="movingTargetScore" style="display: none">Score: 0</p>
+            <div id="movingTargetGameSpace" style="display: none">
+                <div id="movingTargetObject" style="display: none"></div>
+                <button id="movingTargetBeginBtn" style="display: none">Begin</button>
+            </div>
+            <div id="movingTargetResult" style="display: none">test</div>
+        </div>
+        
+    <script src="gameIndex.js"></script>
+</body>
+</html>

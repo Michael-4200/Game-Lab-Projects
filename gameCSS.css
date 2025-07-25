@@ -1,0 +1,673 @@
+body {
+    background-color: hsl(0, 0%, 20%);
+    overflow-y: scroll;
+}
+
+h2 {
+    font-family: rubik;
+    font-size: 2em;
+    margin: 10px;
+}
+h1 {
+    color: black;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 3.6em;
+    margin: 15px 15px 5px;
+}
+
+h5 {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 0.85em;
+    text-align: right;
+    color: hsl(183, 100%, 50%);
+}
+
+.gameCardContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    padding: 15px;
+}
+
+.gameCard {
+    background-color: white;
+    width: 150px;
+    height: 75px;
+    border: black 0.5px solid;
+    border-radius: 15px;
+    padding: 5px;
+    font-family: sans-serif;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gameCard:hover {
+    box-shadow: 0px 0px 10px 0px hsl(183, 100%, 50%);
+    transform: scale(1.05);
+}
+
+.gameDisplayContainer{
+    /* default hidden */
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* full viewport width */
+    width: 100vw;
+    /* full viewport height */
+    height: 100vh;
+    background-color: hsl(0, 0%, 15%);
+    overflow: auto;
+    /* displays above any content if needed (stays on top) */
+    z-index: 1000;
+
+    text-align: center;
+    padding: 20px;;
+}
+.gameDisplayContainer.activeGame{
+    display: block;
+}
+
+.myH2{
+    font-size: 1.2em;
+}
+/* ------------------------------------------ BACK BUTTON ------------------------------------------ */
+.backBtn{
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 1.7em;
+    cursor: pointer;
+    color: hsl(0, 0%, 15%);
+    z-index: 1000;
+    transition: color 0.5s ease
+}
+
+.backBtn:hover{
+    color: hsl(0, 0%, 0%);
+}
+
+/* ---------------------------------- NUMBER GUESSER ----------------------------------  */
+
+#numberGuessingFeedback {
+    color: hsl(111, 100%, 50%);
+}
+#passwordGeneratorFeedback{
+    color: aliceblue;
+    display: inline-block;
+    background-color: hsl(0, 0%, 18%);
+    padding: 15px;
+    border-radius: 5px;
+}
+#randomNumberGeneratorFeedback{
+    font-size: 2em;
+    color: orangered;
+}
+#anagramSolverWordScrambled{
+    font-size: 2em;
+    color: orangered;
+}
+#anagramSolverFeedback{
+    display: inline-block;
+    font-size: 2em;
+    padding: 15px;
+    border-radius: 5px;
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(0, 0%, 16%);
+}
+.instructions{
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    color: lightskyblue;
+}
+.buttons{
+    margin: 2px 2px 2px;
+    color: hsl(0, 0%, 80%);
+    background-color: hsl(234, 100%, 58%, 0.576);
+    font-family: roboto;
+    border: black 0.1px solid;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.buttons:hover{
+    transform: scale(1.05);
+}
+
+/* ---------------------------------- COUNTER ----------------------------------  */
+
+#counterResult{
+    display: flex;
+    align-items: center;     /* Vertically centers content */
+    justify-content: center; /* Horizontally centers content */
+
+    margin: 0 auto;          /* This centers the entire box horizontally */
+
+    font-family: roboto;
+    font-size: 1.7em;
+    border-radius: 75px;
+    width: 75px;
+    height: 75px;
+    background-color: aliceblue;
+}
+
+
+/* ---------------------------------- TO DO LIST ----------------------------------  */
+.toDoListItems{
+    color: lightseagreen;
+}
+.done {
+  text-decoration: line-through;
+  color: gray;
+}
+.done-btn {
+    margin-left: 10px;
+    background-color: hsl(120, 73%, 75%);
+    border: none;
+    padding: 0px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove-btn {
+    margin-left: 5px;
+    background-color: hsl(0, 79%, 72%);
+    border: none;
+    padding: 0px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.done-btn:hover {
+    background-color: hsl(120, 66%, 39%);
+    color: white;
+}
+
+.remove-btn:hover {
+    background-color: hsl(0, 60%, 40%);
+    color: white;
+}
+
+#addTaskBtn {
+    font-family: rubik;
+    padding: 2px 4px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: transform;
+    transition: background-color 0.5s ease;
+}
+#addTaskBtn:hover {
+    transform: scale(1.08);
+    background-color: lightskyblue;
+}
+.edit-btn {
+    margin-left: 5px;
+    background-color: hsl(195, 53%, 79%);
+    border: none;
+    padding: 0px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.edit-btn:hover{
+    background-color: hsl(195, 55%, 55%);
+    color: white;
+}
+
+/* ---------------------------------- ROCK, PAPER, SCISSORS ----------------------------------  */
+
+.userOptions{
+    font-size: 5em;
+    width: 120px;
+    height: 120px;
+    background-color: hsla(180, 100%, 50%, 0.507);
+    margin: 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color;
+    transition: transform 0.3s ease;
+}
+.userOptions:hover{
+    background-color: hsla(180, 100%, 50%, 0.767);
+    transform: scale(1.2);
+}
+.buttonSelected{
+    border: black 2px solid;
+    scale: 1.2;
+    background-color: hsla(180, 100%, 50%, 0.767);
+}
+#rockPaperScissorsGoBtn{
+    margin-top: 35px;
+    font-size: 1.5em;
+    font-family: rubik;
+    background-color: hsl(0, 0%, 100%);
+    border: none;
+    border-radius: 4px;
+    width: 150px;
+    height: 45px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: tranform 0.5s ease;
+}
+#rockPaperScissorsGoBtn:hover{
+    transform: scale(1.05);
+}
+#rockPaperScissorsStart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    font-family: sans-serif;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    padding: 20px 20px;
+    border: solid 2px black;
+    border-radius: 100px;
+    transition: color;
+    transition: transform 0.4s ease;
+    background-color: hsla(0, 90%, 47%, 0.582);
+}
+#rockPaperScissorsStart:hover{
+    transform: scale(1.2);
+    color: white;
+}
+#rpsResetBtn{
+    display: flex;
+    align-items: centre;
+    justify-content: centre;
+    font-size: 4em;
+    margin: 15px;
+    background-color: hsl(0, 0%, 15%);
+    border: none;
+    transition: tranform 0.5s ease;
+    cursor: pointer;
+}
+#rpsResetBtn:hover{
+    transform: scale(1.1);
+}
+.rpsText{
+    font-family: sans-serif;
+    font-size: 1.2em;
+    color: hsl(208, 100%, 87%);
+    border: none;
+    border-radius: 4px;
+}
+.center-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ---------------------------------- QUIZ GAME ----------------------------------  */
+#quizGameInstructions{
+    font-family: 'Lucida Sans';
+    color: lightyellow;
+}
+#quizGameFeedback1{
+    font-size: 1.4em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: hsla(0, 0%, 100%, 0.03);
+    color: lightcoral;
+}
+
+#quizGameFeedback2{
+    font-family: sans-serif;
+    font-size: 1.8em;
+    color: aquamarine;
+    display: inline-block;
+    padding: 8px;
+    background-color: hsl(0, 0%, 20%);
+    border: none;
+    border-radius: 8px;
+}
+
+.quizGameOptions-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    /* gap: 3em; */
+}
+.quizGameOptions{
+    font-size: 1.05em;
+    font-family: rubik;
+    display: block;
+    justify-content: center;
+    width: 130px;
+    height: 25px;
+    margin: 25px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+.quizGameOptions:hover{
+    transform: scale(1.3);
+}
+
+#quizGameNextBtn{
+    font-size: 1.05em;
+    font-family: rubik;
+    display: block;
+    justify-content: center;
+    width: 80px;
+    height: 25px;
+    margin: 25px;
+    cursor: pointer;
+    background-color: lightgreen;
+    border: none;
+    border-radius: 5px;
+}
+#quizGameNextBtn:hover{
+    color: white;
+}
+
+/* ---------------------------------- MEMORY CARD GAME ----------------------------------  */
+#cardContainer{
+    display: grid;
+    margin: 0 auto;
+    background-color: none;
+    grid-template-columns: repeat(8, 1fr);
+    max-width: 500px;
+    height: fit-content;
+    gap: 18px;
+}
+.memoryCard{
+    aspect-ratio: 1/1;
+    background-color: hsl(0, 0%, 50%);
+    width: 100%;
+    display: flex;
+    font-size: 2em;
+    align-items: center;
+    justify-content: center;
+    border: solid 2px hsl(0, 0%, 20%);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.memoryCard:hover{
+    background-color: hsl(0, 0%, 55%);
+    box-shadow: 0px 0px 20px 2px black;
+}
+#memoryCardStartBtn{
+    margin: 0 auto;
+}
+.memoryCardCompleteState{
+    background-color: lightgreen;
+}
+.memoryCardCompleteState:hover{
+    background-color: lightgreen;
+    cursor: default;
+}
+.memoryCardStartBtn{
+    font-family: rubik;
+    margin-top: 20px;
+    width: 135px;
+    height: 35px;
+    font-size: 1.4em;
+    background-color: lightgreen;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: font-size 0.4s ease;
+}
+.memoryCardStartBtn:hover{
+    font-size: 1.6em;
+}
+.memoryCardResetBtn{
+    font-family: rubik;
+    margin-top: 20px;
+    white-space: nowrap;
+    width: 200px;
+    height: 35px;
+    font-size: 1.2em;
+    background-color: lightsalmon;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: font-size 0.4s ease;
+}
+.memoryCardResetBtn:hover{
+    font-size: 1.3em;
+}
+.completeStateFeedback{
+    font-family: rubik;
+    font-size: 1.8em;
+    color: lightskyblue;
+}
+
+/* ---------------------------------- WHACK-A-MOLE ----------------------------------  */
+#wamGridContainer{
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 500px;
+    height: fit-content;
+    position: relative;
+    gap: 15px;
+}
+.wamBlocks{
+    display: flex;
+    aspect-ratio: 1/1;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px white;
+    border-radius: 6px;
+    font-size: 3em;
+}
+#wamScoreHolder{
+    position: absolute;
+    top: 45px;
+    right: 280px;
+    font-size: 1.8em;
+}
+#wamStopBtn{
+    position: absolute;
+    top: 125px;
+    right: 308px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 2px;
+    padding: 4px 12px;
+    color: hsl(0, 0%, 25%);
+    background-color: red;
+    cursor: pointer;
+    transition: color 0.5s ease;
+}
+#wamStopBtn:hover{
+    color: black;
+}
+#wamStartBtn2{
+    position: absolute;
+    top: 125px;
+    right: 308px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 2px;
+    padding: 4px 12px;
+    color: hsl(0, 0%, 25%);
+    background-color: hsl(131, 100%, 50%);;
+    cursor: pointer;
+    transition: color 0.5s ease;
+}
+#wamStartBtn2:hover{
+    color: black;
+}
+#wamStartBtn{
+    position: absolute;
+    justify-self: center;
+    align-self: center;
+    font-family: sans-serif;
+    font-size: 4em;
+    cursor: pointer;
+    color: grey;
+    background-color: rgba(255, 255, 255, 0.737);
+    border: none;
+    border-radius: 5px;
+    transition: color 1s ease;
+}
+#wamStartBtn:hover{
+    color: black;
+}
+.wamCorrect{
+    background-color: lightgreen;
+}
+.wamIncorrect{
+    background-color: lightcoral;
+}
+.wamPlaying{
+    cursor: pointer;
+}
+                    /* ---------------------------------- Typing Speed Test ----------------------------------  */
+#tstSentenceDisplay{
+    font-family: arial;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px;
+    border: 3px solid #00000086;
+    border-radius: 12px;
+    background-color: rgba(128, 128, 128, 0.053);
+    box-shadow: 0px 0px 15px 2px rgba(255, 255, 255, 0.18);
+}
+#tstResult{
+    font-family: roboto;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 25px auto;
+    color: #2c7a7b;
+}
+#tstResetBtn{
+    border: none;
+    border-radius: 5px;
+    padding: 4px 45px;
+    background-color: rgba(255, 255, 255, 0.292);
+    transition: background-color 0.5s ease;
+}
+#tstResetBtn:hover{
+    box-shadow: 0px 0px 20px 1px;
+    background-color: rgba(255, 255, 255, 0.701);
+}
+#tstInput{
+    font-size: 1rem;
+    margin: 30px;
+}
+
+                    /* ---------------------------------- Reaction Speed ----------------------------------  */
+#reactionSpeedClickBox{
+    display: flex;
+    border: 2px solid black;
+    height: 400px;
+    aspect-ratio: 2 / 1;
+    margin: 45px auto;
+    cursor: pointer;
+}
+#reactionSpeedFeedback{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    font-family: inter;
+    font-size: 2em;
+}
+/* 4 game states */
+.reactionSpeedWaiting{
+    background-color: orangered;
+}
+.reactionSpeedReady{
+    background-color: blue;
+}
+.reactionSpeedNow{
+    background-color: green;
+}
+.reactionSpeedTooSoon{
+    background-color: red;
+}
+#reactionSpeedInstructions{
+    line-height: 1.8;
+}
+#reacionSpeedBeginBtn{
+    font-family: inter;
+    font-size: 1.2rem;
+    padding: 5px 50px;
+    margin: 45px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.6s ease;
+}
+#reacionSpeedBeginBtn:hover{
+    transform: scale(1.1);
+}
+
+                    /* ---------------------------------- Moving Target ----------------------------------  */
+#movingTargetStartBtn{
+    font-family: inter;
+    font-size: 1.2rem;
+    padding: 5px 50px;
+    margin: 45px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.6s ease;
+}
+#movingTargetStartBtn:hover{
+    transform: scale(1.1);
+}
+#movingTargetGameSpace{
+    display: flex;
+    border: 2px solid white;
+    margin: 25px auto;
+    width: 800px;
+    aspect-ratio: 2/1;
+    position: relative;
+}
+#movingTargetObject{
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: blue;
+    position: absolute;
+    cursor: pointer;
+}
+#movingTargetBeginBtn{
+    margin: auto;
+    height: 35px;
+    width: 90px;
+    font-family: inter;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: hsla(0, 0%, 70%, 0.593);
+    transition: background-color;
+    transition: transform 0.6s ease;
+}
+#movingTargetBeginBtn:hover{
+    background-color: white;
+    transform: scale(1.1);
+}
+#movingTargetObject.movingTargetObjectHit{
+    background-color: rgb(0, 255, 0);
+}
+#movingTargetObject.mtInactive{
+    background-color: blue;
+}
+#movingTargetObject.mtMiss{
+    background-color: red;
+}
