@@ -1080,75 +1080,103 @@ reactionSpeedClickBox.addEventListener("click", function(){
 })
 
                     // ---------------------------------- Reaction Speed ---------------------------------- //
-const movingTargetInstruction = document.getElementById("movingTargetInstruction")
-const movingTargetStartBtn = document.getElementById("movingTargetStartBtn")
-const movingTargetGameSpace = document.getElementById("movingTargetGameSpace")
-const movingTargetObject = document.getElementById("movingTargetObject")
-const movingTargetResult = document.getElementById("movingTargetResult")
-const movingTargetBeginBtn = document.getElementById("movingTargetBeginBtn")
-const movingTargetScore = document.getElementById("movingTargetScore")
+const mtInstructions = document.getElementById("mtInstructions")
+const mtStartBtn = document.getElementById("mtStartBtn")
+const mtGameArea = document.getElementById("mtGameArea")
+const mtTarget = document.getElementById("mtTarget")
+const mtBeginBtn = document.getElementById("mtBeginBtn")
+const mtScoreHolder = document.getElementById("mtScoreHolder")
+const mtEndGameResult = document.getElementById("mtEndGameResult")
+const mtResetBtn = document.getElementById("mtResetBtn")
 
-let mtScore = 0
+let mtCurrentScore = 0
 
-movingTargetStartBtn.addEventListener("click", function(){
-    movingTargetStartBtn.style.display = "none"
-    movingTargetInstruction.style.display = "none"
-    movingTargetGameSpace.style.display = "flex"
-    movingTargetBeginBtn.style.display = "block"
-    movingTargetScore.style.display = "inline-block"
-})
-
-// ensure the targets starting position is random
-let mtMaxX = 750
-let mtMaxY = 350
+// initial target position
+let mtMaxX = 650
+let mtMaxY = 300
 let mtRandomX = Math.floor(Math.random() * mtMaxX)
 let mtRandomY = Math.floor(Math.random() * mtMaxY)
+mtTarget.style.left = mtRandomX + "px"
+mtTarget.style.top = mtRandomY + "px"
 
-movingTargetObject.style.left = mtRandomX + `px`
-movingTargetObject.style.top = mtRandomY + `px`
+// START BUTTON
+mtStartBtn.addEventListener("click", function(){
+    mtStartBtn.style.display = "none"
+    mtInstructions.style.display = "none"
+    mtGameArea.style.display = "flex"
+    mtBeginBtn.style.display = "inline-block"
+    mtScoreHolder.style.display = "flex"
+})
 
-movingTargetBeginBtn.addEventListener("click", function(){
-    movingTargetBeginBtn.style.display = "none"
-    
-    movingTargetLoop = setInterval(function(){
-        // hide the target
-        movingTargetObject.classList.add("mtInactive")
-        movingTargetObject.classList.remove("mtActive", "movingTargetObjectHit", "mtMiss")
-        movingTargetObject.style.display = "none"
-        // after 500ms, move and show the target
-        movingTargetTimeout = setTimeout(function() {
-            // define the max x width and y height
-            const mtMaxX = 750
-            const mtMaxY = 350
-            const mtRandomX = Math.floor(Math.random() * mtMaxX)
-            const mtRandomY = Math.floor(Math.random() * mtMaxY)
-            // choosing random location for the target
-            movingTargetObject.style.left = mtRandomX + `px`
-            movingTargetObject.style.top = mtRandomY + `px`
-            console.log("Y=" + mtRandomY, "X=" + mtRandomX)
-            movingTargetObject.classList.remove("mtInactive")
-            movingTargetObject.classList.add("mtActive")
-            movingTargetObject.style.display = "inline-block"
-            }, 1800)
+// Counter Limit for 10 rounds
+let mtRoundCount = 0
+
+// BEGIN BUTTON
+mtBeginBtn.addEventListener("click", function(){
+    mtBeginBtn.style.display = "none"
+
+    // Moving target logic
+    mtInterval = setInterval(function(){
+        let mtMaxX = 650
+        let mtMaxY = 300
+        let mtRandomX = Math.floor(Math.random() * mtMaxX)
+        let mtRandomY = Math.floor(Math.random() * mtMaxY)
+        mtTarget.style.left = mtRandomX + "px"
+        mtTarget.style.top = mtRandomY + "px"
+        mtTarget.style.display = "inline-block"
+        mtTarget.classList.add("mtReady")
+        mtTarget.classList.remove("mtMiss")
+
+        // disappear before changing position
+        mtTimeout = setTimeout(function(){
+            mtTarget.style.display = "none"
+            mtTarget.classList.remove("mtReady")
+            // Limit the game to 10 targets
+            function mtLimitRounds(){
+                if(mtRoundCount >= 9){
+                    clearInterval(mtInterval)
+                    clearTimeout(mtTimeout)
+                    mtScoreHolder.style.display = "none"
+                    mtEndGameResult.style.display = "inline-block"
+                    mtEndGameResult.innerHTML = `Game Over<br>Score: ${mtCurrentScore}`
+                    mtEndGameTimeout = setTimeout(function(){
+                        mtTarget.style.display = "none"
+                    }, 300)
+                    mtResetBtn.style.display = "inline-block"
+                    return true
+                }
+                mtRoundCount++
+                console.log(mtRoundCount)
+                return false
+            }
+            if(mtLimitRounds()) return // call and check
+        }, 500)
     }, 2500)
 })
 
-// handle successful clicks
-movingTargetObject.addEventListener("click", function(){
-    if(movingTargetObject.classList.contains("mtActive")){
-        movingTargetObject.classList.remove("mtActive")
-        movingTargetObject.classList.add("movingTargetObjectHit")
-        console.log("Hit class added")
-        mtScore++
-        console.log(mtScore)
+// CLICK handling
+mtGameArea.addEventListener("click", function(e){
+    if(e.target === mtGameArea && mtTarget.classList.contains("mtReady")){
+        mtTarget.classList.remove("mtReady")
+        mtTarget.classList.add("mtMiss")
+    } else if(e.target === mtTarget){
+        mtTarget.classList.remove("mtReady")
+        mtTarget.classList.add("mtHit")
+        mtCurrentScore += 3
+        mtScoreHolder.textContent = `Score: ${mtCurrentScore}`
     }
 })
-// handle miss click
-movingTargetGameSpace.addEventListener("click", function(e){
-    if(e.target === movingTargetGameSpace && movingTargetObject.classList.contains("mtActive")){
-        movingTargetObject.classList.remove("mtActive")
-        console.log("Active class removed")
-        movingTargetObject.classList.add("mtMiss")
-        console.log("Miss class added")
-    }
+
+// RESET BUTTON
+mtResetBtn.addEventListener("click", function(){
+    mtResetBtn.style.display = "none"
+    mtEndGameResult.style.display = "none"
+    mtEndGameResult.textContent = ""
+    mtBeginBtn.style.display = "inline-block"
+    mtRoundCount = 0
+    mtCurrentScore = 0
+    mtScoreHolder.textContent = "Score: 0"
+    mtScoreHolder.style.display = "flex"
 })
+
+// What about: Unlimited rounds, if "friendly" is hit, game over

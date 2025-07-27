@@ -6,12 +6,11 @@
  <!-- Starting point: You’re not building a commercial product
   —you’re building a personal game portfolio, brick by brick.
 
-5. Add a simple 2D platformer using p5.js or Phaser.
+Add a simple 2D platformer using p5.js or Phaser.
 
 The goal isn’t a finished website. The real goal is to:
 Have a place to practice and display your work.
-Learn by building, breaking, and rebuilding.
-Look back and say, “I made all this from scratch.” -->
+Learn by building, breaking, and rebuilding. -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -309,16 +308,15 @@ Look back and say, “I made all this from scratch.” -->
             <button class="backBtn">⬅️Back</button>
             <h2>Moving Target</h2>
 
-            <p id="movingTargetInstruction" class="instructions">A moving target will appear on the screen,<br>
-                                                                 click the targets as soon as they appear.<br>
-                                                                 Hit "Start" when you're ready!</p>
-            <button id="movingTargetStartBtn">Start</button>
-            <p id="movingTargetScore" style="display: none">Score: 0</p>
-            <div id="movingTargetGameSpace" style="display: none">
-                <div id="movingTargetObject" style="display: none"></div>
-                <button id="movingTargetBeginBtn" style="display: none">Begin</button>
+            <p id="mtInstructions" class="instructions">Instructions Here</p>
+            <button id="mtStartBtn">START</button>
+            <div id="mtGameArea" style="display: none">
+                <div id="mtTarget" style="display: none"></div>
+                <button id="mtBeginBtn" style="display: none">BEGIN</button>
+                <p id="mtEndGameResult" class="instructions" style="display: none"></p>
             </div>
-            <div id="movingTargetResult" style="display: none">test</div>
+            <p id="mtScoreHolder" class="instructions" style="display: none">Score: 0</p>
+            <button id="mtResetBtn" style="display: none">RESET</button>
         </div>
         
     <script src="gameIndex.js"></script>

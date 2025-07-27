@@ -615,59 +615,50 @@ h5 {
 }
 
                     /* ---------------------------------- Moving Target ----------------------------------  */
-#movingTargetStartBtn{
-    font-family: inter;
-    font-size: 1.2rem;
-    padding: 5px 50px;
-    margin: 45px;
+#mtGameArea{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 25px auto;
+    width: 700px;
+    aspect-ratio: 2/1;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+#mtScoreHolder{
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+#mtBeginBtn{
+    margin: auto;
+    padding: 5px 15px;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.6s ease;
+    align-items: center;
+    justify-content: center;
 }
-#movingTargetStartBtn:hover{
-    transform: scale(1.1);
-}
-#movingTargetGameSpace{
-    display: flex;
-    border: 2px solid white;
-    margin: 25px auto;
-    width: 800px;
-    aspect-ratio: 2/1;
-    position: relative;
-}
-#movingTargetObject{
-    border: none;
+#mtTarget{
+    display: inline-block;
+    position: absolute;
+    background-color: white;
     width: 50px;
     height: 50px;
+    border: 2px solid black;
     border-radius: 50%;
-    background-color: blue;
-    position: absolute;
-    cursor: pointer;
+    cursor: crosshair;
 }
-#movingTargetBeginBtn{
-    margin: auto;
-    height: 35px;
-    width: 90px;
-    font-family: inter;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: hsla(0, 0%, 70%, 0.593);
-    transition: background-color;
-    transition: transform 0.6s ease;
+#mtTarget.mtHit{
+    background-color: rgb(0, 251, 0);
 }
-#movingTargetBeginBtn:hover{
-    background-color: white;
-    transform: scale(1.1);
-}
-#movingTargetObject.movingTargetObjectHit{
-    background-color: rgb(0, 255, 0);
-}
-#movingTargetObject.mtInactive{
-    background-color: blue;
-}
-#movingTargetObject.mtMiss{
+#mtTarget.mtMiss{
     background-color: red;
+}
+#mtTarget.mtReady{
+    background-color: blue;
+}
+#mtEndGameResult{
+    display: inline-block;
+    font-size: 2em;
 }
