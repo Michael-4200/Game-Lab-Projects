@@ -1,7 +1,7 @@
-// First Game: Number Guessing Game
-// This is a simple number guessing game where the 
-// player has to guess a number between 1 and 100.
+// - - - - - - - - - - - - - - - - - - - - GAME LAB PROJECT: BATCH #1 (1 - 30) - - - - - - - - - - - - - - - - - - - - //
 
+// homeScreenContainer
+const homeScreenContainer = document.getElementById("homeScreenContainer")
 // REPLACED EVERY EVENTLISTENER with Universal GameCard Handlers:
 document.querySelectorAll(".gameCard").forEach(card => {
     card.addEventListener("click", function(){
@@ -45,13 +45,11 @@ document.querySelectorAll(".backBtn").forEach(button => {
     })
 })
 
-// homeScreenContainer
-const homeScreenContainer = document.getElementById("homeScreenContainer")
-
 
 // ---------------------------------- NUMBER GUESSING GAME ---------------------------------- // 
+// Description: User tries to guess a random number within a range.
+
 // Create persistent state vars for keeping track of answers and attempts
-// This keeps the answer and attempts available across multiple clicks
 let answer
 let attempts
 // JavaScript checks the guess and updates #numberGuessingFeedback with a message
@@ -116,6 +114,8 @@ document.getElementById("game1restartBtn").addEventListener("click", function ()
 
 
 // ---------------------------------- PASSWORD GENERATOR ---------------------------------- // 
+// Description: Creates a random password based on user criteria.
+
 // Initialize the function
 function generatePassword(){
     // set the consts for all possible chars
@@ -167,6 +167,8 @@ function generatePassword(){
 
 
 // ---------------------------------- RANDOM NUMBER GENERATOR ---------------------------------- // 
+// Description: Generates a random number within a specified range.
+
 // Initialize the constants
 const randomNumberGeneratorBtn = document.getElementById("randomNumberGeneratorBtn")
 const randomNumberGeneratorResetBtn = document.getElementById("randomNumberGeneratorResetBtn")
@@ -200,6 +202,8 @@ randomNumberGeneratorResetBtn.addEventListener("click", function(){
 
 
 // ---------------------------------- COUNTER ---------------------------------- // 
+// Description: Simple counter to increase, decrease, or reset a number.
+
 // Store all buttons and result within a constant
 const counterResult = document.getElementById("counterResult")
 const counterDecreaseBtn = document.getElementById("counterDecreaseBtn")
@@ -225,6 +229,8 @@ counterResetBtn.addEventListener("click", function(){
 
 
 // ---------------------------------- ANAGRAM SOLVER ---------------------------------- //  
+// Description: Jumbles names of capital cities for the user to solve.
+
 // Define the constants
 const anagramSolverWordScrambled = document.getElementById("anagramSolverWordScrambled")
 const anagramSolverInput = document.getElementById("anagramSolverInput")
@@ -344,6 +350,8 @@ anagramSolverResetBtn.addEventListener("click", function(){
 
 
 // ---------------------------------- TO DO LIST APP ---------------------------------- //  
+// Description: Allows users to add, mark complete, and delete tasks.
+
 const toDoUserInput = document.getElementById("toDoUserInput")
 const addTaskBtn = document.getElementById("addTaskBtn")
 const toDoTaskList = document.getElementById("toDoTaskList")
@@ -441,6 +449,8 @@ toDoUserInput.addEventListener("keydown", function(e){ // we check event.key(e) 
 
 
 // ---------------------------------- ROCK, PAPER, SCISSORS ---------------------------------- // 
+// Description: Classic game where user plays against the computer.
+
 const rockPaperScissorsStart = document.getElementById("rockPaperScissorsStart")
 const rockOption = document.getElementById("rockOption")
 const paperOption = document.getElementById("paperOption")
@@ -548,6 +558,8 @@ rpsResetBtn.addEventListener("click", function(){
 
 
 // ---------------------------------- QUIZ GAME ---------------------------------- //
+// Description: Multiple-choice questions with score tracking.
+
 const quizGameStartBtn = document.getElementById("quizGameStartBtn")
 const quizGameFeedback1 = document.getElementById("quizGameFeedback1")
 const quizGameFeedback2 = document.getElementById("quizGameFeedback2")
@@ -680,6 +692,8 @@ quizGameNextBtn.addEventListener("click", function(){
 
 
 // ---------------------------------- MEMORY CARD GAME ---------------------------------- //
+// Description: Match pairs of cards to clear the board.
+
 const cardContainer = document.getElementById("cardContainer")
 const memoryCardGameResetBtn = document.getElementById("memoryCardGameResetBtn")
 const memoryCardGameFeedback = document.getElementById("memoryCardGameFeedback") 
@@ -842,6 +856,8 @@ function simulateEndGame(){
 }
 
 // ---------------------------------- WHACK-A-MOLE GAME ---------------------------------- //
+// Description: Click moles appearing randomly before time runs out.
+
 const wamInstructions = document.getElementById("wamInstructions")
 const wamGridContainer = document.getElementById("wamGridContainer")
 const wamReadyBtn = document.getElementById("wamReadyBtn")
@@ -939,7 +955,8 @@ blocks.forEach(block => {
     })
 })
 
-                    // ---------------------------------- Typing Speed Test ---------------------------------- //
+// ---------------------------------- Typing Speed Test ---------------------------------- //
+// Description: Measures user’s typing speed.
 
 const tstSentenceDisplay = document.getElementById("tstSentenceDisplay")
 const tstInput = document.getElementById("tstInput")
@@ -1007,7 +1024,9 @@ tstResetBtn.addEventListener("click", function(){
     // console.log(tstTimer)
 })
 
-                    // ---------------------------------- Reaction Speed ---------------------------------- //
+// ---------------------------------- Reaction Speed ---------------------------------- //
+// Description: Tests how fast user reacts to visual stimuli.
+
 const reactionSpeedClickBox = document.getElementById("reactionSpeedClickBox")
 const reactionSpeedFeedback = document.getElementById("reactionSpeedFeedback")
 const reactionSpeedInstructions = document.getElementById("reactionSpeedInstructions")
@@ -1079,7 +1098,9 @@ reactionSpeedClickBox.addEventListener("click", function(){
     }
 })
 
-                    // ---------------------------------- Reaction Speed ---------------------------------- //
+// ---------------------------------- MOVING TARGET ---------------------------------- //
+// Description: User clicks a moving target to score points.
+
 const mtInstructions = document.getElementById("mtInstructions")
 const mtStartBtn = document.getElementById("mtStartBtn")
 const mtGameArea = document.getElementById("mtGameArea")
